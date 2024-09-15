@@ -18,7 +18,7 @@
             </p>
         </li>
     </ul>
-    <p>
+    {% if user.is_staff %}
         <a href="{% url 'blogs:edit_blog' blog.id %}">Edit blog</a>
-    </p>
+    {% endif %}
 {% endblock content %}

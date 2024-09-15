@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import BlogPost
 from .forms import BlogForm
+from django.contrib.auth.decorators import user_passes_test
 
 # Create your views here.
 def index(request):
@@ -19,6 +20,7 @@ def blog(request, blog_id):
     return render(request, "blogs/blog.html", context)
 
 
+@user_passes_test(lambda user: user.is_staff)
 def new_blog(request):
     if request.method != 'POST':
         form = BlogForm()
@@ -32,6 +34,7 @@ def new_blog(request):
     return render(request, 'blogs/new_blog.html', context)
 
 
+@user_passes_test(lambda user: user.is_staff)
 def edit_blog(request, blog_id):
     blog = BlogPost.objects.get(id=blog_id)
     if request.method != 'POST':
