@@ -7,4 +7,5 @@ urlpatterns = [
     path("", views.index, name="index"),
     path("blogs/", views.blogs, name="blogs"),
     path("blogs/<int:blog_id>/", views.blog, name="blog"),
+    path("blogs/new_blog/", views.new_blog, name="new_blog"),
 ]

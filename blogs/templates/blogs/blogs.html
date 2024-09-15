@@ -8,7 +8,8 @@
                 <a href="{% url 'blogs:blog' blog.id %}">{{ blog }}</a>
             </li>
         {% empty %}
-            <li>No topics ¯\_(ツ)_/¯</li>
+            <li>No blogs ¯\_(ツ)_/¯</li>
         {% endfor %}
     </ul>
+    <a href="{% url 'blogs:new_blog' %}">Add a new blog</a>
 {% endblock content %}
