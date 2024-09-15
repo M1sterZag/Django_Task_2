@@ -1,24 +1,20 @@
 {% extends "blogs/base.html" %}
 
 {% block content %}
-    <ul>
-        <li>
-            <p>
-                {{ blog.title }}
-            </p>
-        </li>
-        <li>
-            <p>
-                {{ blog.text|linebreaks }}
-            </p>
-        </li>
-        <li>
-            <p>
-                {{ blog.date_added|date:'M d, Y' }}
-            </p>
-        </li>
-    </ul>
-    {% if user.is_staff %}
-        <a href="{% url 'blogs:edit_blog' blog.id %}">Edit blog</a>
-    {% endif %}
+    <div class="container mt-4">
+        
+        <div class="card mb-4">
+            <div class="card-body d-flex flex-column align-items-center">
+                <h2 class="card-title text-center mb-3">{{ blog.title }}</h2>
+                <p class="card-text text-center mb-3">{{ blog.text|linebreaks }}</p>
+                <p class="text-center">{{ blog.date_added|date:'M d, Y' }}</p>
+            </div>
+        </div>        
+
+        {% if user.is_staff %}
+            <div class="text-center mt-3">
+                <a href="{% url 'blogs:edit_blog' blog.id %}" class="btn btn-primary">Edit blog</a>
+            </div>
+        {% endif %}
+    </div>
 {% endblock content %}

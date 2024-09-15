@@ -1,17 +1,22 @@
 {% extends "blogs/base.html" %}
 
 {% block content %}
-    <p>Blogs</p>
-    <ul>
-        {% for blog in blogs %}
-            <li>
-                <a href="{% url 'blogs:blog' blog.id %}">{{ blog }}</a>
-            </li>
-        {% empty %}
-            <li>No blogs ¯\_(ツ)_/¯</li>
-        {% endfor %}
-    </ul>
+    <h1 class="mb-4 text-center">Blogs</h1>
+    <div class="d-flex justify-content-center mb-4">
+        <ul class="list-group w-50">
+            {% for blog in blogs %}
+                <li class="list-group-item">
+                    <a href="{% url 'blogs:blog' blog.id %}">{{ blog }}</a>
+                </li>
+            {% empty %}
+                <li class="list-group-item text-muted">No blogs available ¯\_(ツ)_/¯</li>
+            {% endfor %}
+        </ul>
+    </div>
+
     {% if user.is_staff %}
-        <a href="{% url 'blogs:new_blog' %}">Add a new blog</a>
+        <div class="d-flex justify-content-center mt-3">
+            <a href="{% url 'blogs:new_blog' %}" class="btn btn-success">Add a new blog</a>
+        </div>
     {% endif %}
 {% endblock content %}

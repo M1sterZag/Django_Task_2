@@ -1,12 +1,13 @@
 {% extends "blogs/base.html" %}
 {% block content %}
+	<h1 style="text-align: center">Log in</h1>
 	{% if form.errors %}
-		<p>Your username and password didn't match. Please try again.</p>
+		<h1>Your username and password didn't match. Please try again.</h1>
 	{% endif %}
 	<form method="post" action="{% url 'users:login' %}">
 		{% csrf_token %}
 		{{ form.as_p }}
-		<button name="submit">Log in</button>
+		<button name="submit" class="btn btn-success">Log in</button>
 		<input type="hidden" name="next" value="{% url 'blogs:index' %}"/>
 	</form>
-{% endblock content %}
+{% endblock content %}s
