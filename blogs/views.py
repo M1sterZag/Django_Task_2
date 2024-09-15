@@ -31,3 +31,16 @@ def new_blog(request):
             return redirect('blogs:blogs')
     context = {'form': form}
     return render(request, 'blogs/new_blog.html', context)
+
+
+def edit_blog(request, blog_id):
+    blog = BlogPost.objects.get(id=blog_id)
+    if request.method != 'POST':
+        form = BlogForm(instance=blog)
+    else:
+        form = BlogForm(instance=blog, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('blogs:blog', blog_id=blog.id)
+    context = {'blog': blog, 'form': form}
+    return render(request, 'blogs/edit_blog.html', context)
