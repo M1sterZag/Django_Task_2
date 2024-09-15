@@ -26,7 +26,6 @@ def new_blog(request):
         form = BlogForm(data=request.POST)
         if form.is_valid():
             new_blog = form.save(commit=False)
-            # new_topic.owner = request.user
             new_blog.save()
             return redirect('blogs:blogs')
     context = {'form': form}
